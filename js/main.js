@@ -1,8 +1,5 @@
 'use strict';
 
-{
-  alert('BeartySalonはフリー画像等を使って想像で作った物です。ご了承ください。');
-}
 
 // 開始アニメーション
 
@@ -26,7 +23,6 @@ $(window).on('load',function(){
     // 背景が伸びた後に動かしたいJavaScriptがある場合はこの中にJavaScriptを記載
   });
 });
-
 
 
 $(function () {
@@ -113,6 +109,7 @@ $('.slider').slick ( {
     }
   ]
 });
+
 
 
 
