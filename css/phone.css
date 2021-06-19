@@ -409,6 +409,54 @@ header span {
 }
 
 
+.scrolldown {
+  position:absolute;
+  bottom:7%;
+  right:6%;
+  animation:arrowmove 1s ease-in-out infinite;
+  z-index:5;
+}
+@keyframes arrowmove {
+  0% {bottom:1%;}
+  50% {bottom:3%;}
+  100% {bottom:1%;}
+}
+
+.scrolldown span {
+  position:absolute;
+  left:-20px;
+  bottom:10px;
+  color:#eee;
+  font-size:0.9em;
+  letter-spacing:0.08em;
+  -ms-writing-mode:tb-rl;
+  -webkit-writing-mode:vertical-rl;
+  writing-mode:vertical-rl;
+}
+.scrolldown:before {
+  content:"";
+  position:absolute;
+  bottom:0;
+  right:-9px;
+  width:1px;
+  height:15px;
+  background:rgba(0, 0, 0, 0.4);
+  transform:skewX(-31deg);
+}
+.scrolldown:after {
+  content:"";
+  position:absolute;
+  bottom:0;
+  right:-3px;
+  width:1px;
+  height:60px;
+  background:rgba(0, 0, 0, 0.4);
+}
+
+
+
+
+
 
 
 

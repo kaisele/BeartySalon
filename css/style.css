@@ -400,6 +400,52 @@ header span {
 }
 
 
+.scrolldown {
+  position:absolute;
+  bottom:5%;
+  right:5%;
+  animation:arrowmove 1s ease-in-out infinite;
+  z-index:5;
+}
+@keyframes arrowmove {
+  0% {bottom:1%;}
+  50% {bottom:3%;}
+  100% {bottom:1%;}
+}
+
+.scrolldown span {
+  position:absolute;
+  left:-20px;
+  bottom:10px;
+  color:#eee;
+  font-size:1em;
+  letter-spacing:0.1em;
+  -ms-writing-mode:tb-rl;
+  -webkit-writing-mode:vertical-rl;
+  writing-mode:vertical-rl;
+}
+.scrolldown:before {
+  content:"";
+  position:absolute;
+  bottom:0;
+  right:-14px;
+  width:2px;
+  height:20px;
+  background:rgba(0, 0, 0, 0.4);
+  transform:skewX(-31deg);
+}
+.scrolldown:after {
+  content:"";
+  position:absolute;
+  bottom:0;
+  right:-8px;
+  width:2px;
+  height:70px;
+  background:rgba(0, 0, 0, 0.4);
+}
+
+
+
 
 
 
