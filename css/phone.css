@@ -31,8 +31,9 @@ html{
 #splash_logo {
   position:absolute;
   top:50%;
-  left:50%;
+  left:10%;
   transform:translate(-50.4%,-50.4%);
+  overflow-x:hidden;
 }
 
 /* Loading アイコンの大きさ設定 */
