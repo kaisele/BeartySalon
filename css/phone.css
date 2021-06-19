@@ -1,0 +1,938 @@
+html{
+  margin:0;
+  width:100%;
+  height:100%;
+  overflow-x:hidden;
+}
+body{
+  margin:0;
+  overflow-x:hidden;
+}
+
+#splash{
+  /* 全面に固定 */
+  position:fixed;
+  z-index:90;
+  width:100%;
+  height:100%;
+  background:rgb(62, 196, 0);
+  text-align:center;
+  color:#fff;
+}
+
+/* Loading画像中央配置 */
+#splash_logo {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50.4%,-50.4%);
+}
+
+/* Loading アイコンの大きさ設定 */
+#splash_logo img {
+  width:1920px;
+}
+
+/* fadeUpをするアイコンの動き */
+.fadeUP {
+  animation-name:fadeUpAnime;
+  animation-duration:0.5s;
+  animation-fill-mode:forwards;
+  opacity:1;
+}
+
+@keyframes fadeAnime {
+  from{
+    opacity:0;
+    transform:translateY(100px);
+  }
+  to {
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+
+
+
+
+#splash2 {
+  position:fixed;
+  width:100vw;
+  height:100%;
+  /* background:#333; */
+  z-index:0;
+  text-align:center;
+  color:#fff;
+}
+
+#splash_logo2 {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  font-size:25px;
+  letter-spacing:2px;
+}
+
+
+
+
+
+
+
+body {
+  background-color:rgb(62, 196, 0);
+  font-family:'Noto Serif JP',serif;
+}
+
+body.appear {
+  background:rgb(255, 255, 255);
+}
+
+.splashbg1,.splashbg2{
+  display:none;
+}
+
+/* bodyにappearクラスが付いたら出現 */
+body.appear .splashbg1,
+body.appear .splashbg2 {
+  display:block;
+}
+
+/* 右に消えるエリア */
+body.appear .splashbg1 {
+  animation-name:PageAnime;
+  animation-duration:1s;
+  animation-timing-function:ease-in-out;
+  animation-fill-mode:forwards;
+  content:"";
+  position:fixed;
+  z-index:90;
+  width:100%;
+  height:100vh;
+  top:0;
+  left:50%;
+  transform:scaleX(1);
+  background:rgb(62, 196, 0);
+}
+
+@keyframes PageAnime {
+  0%{
+    transform-origin:left;
+    transform:scaleX(1);
+  }
+  50% {
+    transform-origin:right;
+  }
+  100% {
+    transform-origin:right;
+    transform:scaleX(0);
+  }
+}
+
+/* 左に消えるエリア */
+body.appear .splashbg2 {
+  animation-name:PageAnime2;
+  animation-duration:1s;
+  animation-timing-function:ease-in-out;
+  animation-fill-mode:forwards;
+  content:"";
+  position:fixed;
+  z-index:90;
+  width:100%;
+  height:100vh;
+  top:0;
+  right:50%;
+  transform:scaleX(1);
+  background:rgb(62, 196, 0);
+}
+
+@keyframes PageAnime2 {
+  0%{
+    transform-origin:right;
+    transform:scaleX(1);
+  }
+  50% {
+    transform-origin:left;
+  }
+  100% {
+    transform-origin:left;
+    transform:scaleX(0);
+  }
+}
+
+
+/* ------------------------ */
+
+
+html,body,#container,main {
+  margin:0;
+  padding:0;
+  width:100vw;
+}
+
+#container {
+  opacity:0;
+}
+
+body.appear #container {
+  animation-name:PageAnimeAppear;
+  animation-duration:1s;
+  animation-delay:0.2s;
+  animation-fill-mode:forwards;
+  opacity:1;
+}
+
+@keyframes PageAnimeAppear {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+
+
+/* ボタン */
+.openbtn {
+  position:fixed;
+  top:10px;
+  right:10px;
+  z-index:9999;
+  cursor:pointer;
+  width:60px;
+  height:50px;
+  z-index:100;
+}
+
+.openbtn span {
+  display:inline-block;
+  transition:all .4s;
+  position:absolute;
+  left:14px;
+  height:3px;
+  border-radius:2px;
+  background:#666;
+  width:45%;
+  z-index:100;
+}
+
+.openbtn span:nth-of-type(1){
+  top:15px;
+  z-index:100;
+}
+.openbtn span:nth-of-type(2){
+  top:23px;
+  z-index:100;
+}
+.openbtn span:nth-of-type(3){
+  top:31px;
+  z-index:100;
+}
+
+.openbtn.active span:nth-of-type(1) {
+  top:18px;
+  left:18px;
+  transform:translateY(6px) rotate(-45deg);
+  width:30%;
+  z-index:100;
+}
+
+.openbtn.active span:nth-of-type(2) {
+  opacity:0;
+  z-index:100;
+}
+
+.openbtn.active span:nth-of-type(3) {
+  top:30px;
+  left:18px;
+  transform:translateY(-6px) rotate(45deg);
+  width:30%;
+  z-index:100;
+}
+
+/* ナビゲーション */
+#g-nav {
+  position:fixed;
+  z-index:-1;
+  opacity:0;
+  top:0;
+  width:100vw;
+  height:100vh;
+  background:rgba(166, 255, 0, 0.5);
+  transition:all .8s;
+}
+
+#g-nav.panelactive {
+  opacity:1;
+  z-index:99;
+}
+
+.mainblur {
+  filter:blur(5px);
+}
+
+/* ナビゲーションの縦スクロール */
+#g-nav.panelactive #g-nav-list {
+  position:fixed;
+  z-index:99;
+  width:100vw;
+  height:100vh;
+  overflow:auto;
+  -webkit-overflow-scrolling:touch;
+}
+
+
+#g-nav ul {
+  display:none;
+  position:relative;
+  z-index:99;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  padding:0;
+}
+
+#g-nav.panelactive ul {
+  display:block;
+}
+
+#g-nav li {
+  margin:30px 0;
+  font-size:30px;
+  list-style:none;
+  text-align:center;
+}
+
+#g-nav li a {
+  display:inline-block;
+  text-decoration:none;
+  color:#000;
+  padding:10px;
+}
+
+
+
+
+
+/* ---header--- */
+
+.header-area {
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  z-index:2;
+  color:#fff;
+  text-align:center;
+
+  padding:0;
+  margin:0;
+
+  text-shadow:
+    1px 0 0 black,
+    0 1px 0 black,
+    -1px 0 0 black,
+    0 -1px 0 black;
+}
+
+#header-img {
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:1;
+  width:100%;
+  height:100vh;
+  background:url(../img/home.jpg) no-repeat top center;
+  background-size:cover;
+  transform-origin:center;
+
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+
+  display:block;
+}
+
+header p {
+  margin:0;
+  font-size:16px;
+  white-space:nowrap;
+  letter-spacing:0;
+}
+
+header h1 {
+  margin:0;
+  margin-top:10px;
+  font-size:40px;
+  white-space:nowrap;
+}
+
+header span {
+  opacity:0;
+  animation:glow_anime_on 1s ease-out forwards;
+}
+
+@keyframes glow_anime_on {
+  0% {
+    opacity:0;
+    text-shadow:0 0 0 #fff, 0 0 0 #fff;
+  }
+  50% {
+    opacity:1;
+    text-shadow:0 0 10px #fff, 0 0 15px #fff;
+  }
+  99% {
+    opacity:1;
+    text-shadow:0 0 0 #fff, 0 0 0 #fff;
+  }
+  100% {
+    opacity:1;
+    text-shadow:
+    1px 0 0 black,
+    0 1px 0 black,
+    -1px 0 0 black,
+    0 -1px 0 black;
+  }
+}
+
+
+
+
+
+
+
+
+main {
+  position:relative;
+  top:100vh;
+  left:0;
+  background-color:#fff;
+  width:100%;
+  height:100%;
+  z-index:3;
+}
+
+
+
+
+
+
+
+
+.lead-area {
+  display:flex;
+  flex-wrap:wrap;
+  flex-direction:row-reverse;
+  justify-content:center;
+  padding-top:80px;
+  padding-bottom:0px;
+  letter-spacing:10px;
+}
+
+.lead-img {
+  position:relative;
+  left:0px;
+  width:225px;
+  height:375px;
+  background:url(../img/honten.jpg) no-repeat top center;
+  background-size:cover;
+  transform-origin:center;
+  transform:translateX(-15px);
+  margin-top:20px;
+}
+
+article h2 {
+  width:40%;
+  color:#333;
+  position:relative;
+  left:0px;
+  writing-mode:vertical-rl;
+  text-orientation:upright;
+  line-height:45px;
+  margin:0;
+  transform:translateX(0px);
+}
+article p {
+  width:50%;
+  color:#333;
+  position:relative;
+  left:0px;
+  padding-top:30px;
+  writing-mode:vertical-rl;
+  text-orientation:upright;
+  line-height:30px;
+  margin:0;
+  transform:translateX(-5px);
+}
+article a {
+  height:158px;
+  text-decoration:none;
+  color:#333;
+  padding:10px 15px;
+  border:1px solid #333;
+  position:relative;
+  left:0px;
+  top:0px;
+  writing-mode:vertical-rl;
+  text-orientation:upright;
+  transition:background-color .4s;
+  transform:translateX(10px);
+  margin-top:20px;
+}
+article a:hover {
+  background:rgba(135, 255, 135, 0.4);
+}
+
+
+
+/* ----menu---- */
+.menu {
+  margin-top:100px;
+}
+
+.menu h1 {
+  color:rgb(101, 255, 101);
+  text-align:center;
+  font-size:40px;
+  letter-spacing:8px;
+  margin-bottom:50px;
+}
+
+.menu a {
+  text-align:center;
+  width:100%;
+}
+
+.menu-item {
+  text-decoration:none;
+  margin-bottom:10px;
+  background:rgb(250, 250, 250);
+  box-shadow:5px 5px 5px rgba(0, 0, 0, 0.4);
+  transition:0.3s;
+}
+.menu-item:hover {
+  opacity:0.6;
+}
+.menu-item h1 {
+  color:#333;
+  white-space:nowrap;
+  letter-spacing:2px;
+  margin-top:20px;
+  padding:5px 20px;
+  font-size:18px;
+  text-align:left;
+}
+@media screen and (min-width:601px) and (max-width:900px) {
+  .menu-item h1 {
+    font-size:15px;
+  }
+  .menu-item p {
+    font-size:12px;
+  }
+}
+.menu-item p {
+  color:#333;
+  padding:0px 20px;
+  font-size:14px;
+  text-align:left;
+}
+
+
+
+
+
+.menu ul {
+  padding:0;
+}
+
+.slider li {
+  list-style:none;
+}
+
+/* スライドショー */
+.slider {
+  width:90%;
+  margin:0 auto;
+  margin-bottom:10px;
+}
+
+.slider img {
+  width:100%;
+  height:auto;
+}
+
+/* slickのJavaScriptで書かれるタグ内、スライド左右の余白調整 */
+.slider .slick-slide {
+  margin:0 10px;
+  margin-bottom:10px;
+}
+/* 矢印の設定 */
+/* 戻る、次へ矢印の位置 */
+.slick-prev,
+.slick-next {
+  position:absolute;
+  top:42%;
+  cursor:pointer;
+  /* クリックしたら出てくる枠線を消す */
+  outline:none;
+  /* 矢印の色 */
+  border-top:2px solid #666;
+  border-right:2px solid #666;
+  height:15px;
+  width:15px;
+}
+.slick-prev {  /*戻る矢印の位置*/
+  left:-1.5%;
+  transform:rotate(-135deg);
+}
+.slick-next {  /*次へ矢印の位置*/
+  right:-1.5%;
+  transform:rotate(45deg);
+}
+/* ドットナビゲーションの設定 */
+.slick-dots {
+  text-align:center;
+  margin:20px 0 0 0;
+}
+.slick-dots li {
+  display:inline-block;
+  margin:0 5px;
+}
+.slick-dots button {
+  color:transparent;
+  outline:none;
+  width:8px; /*ドットボタンのサイズ*/
+  height:8px; /*ドットボタンのサイズ*/
+  display:block;
+  border-radius:50%;
+  background:rgb(188, 255, 182); /*ドットボタンの色*/
+}
+
+.slick-dots .slick-active button {
+  /* ドットボタンの現在地表示の色 */
+  background:rgb(21, 252, 0);
+}
+
+.slick-track {
+  margin:0;
+}
+
+
+.allmenu-btn {
+  display:block;
+  width:100%;
+  text-decoration:none;
+  color:#333;
+  margin-top:50px;
+}
+
+
+.allmenu-btn span {
+  display:relative;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:25%;
+  font-size:18px;
+  padding:10px 25px;
+  border:1px solid #333;
+  transition:background-color .4s;
+}
+
+.allmenu-btn span:hover {
+  background:rgba(135, 255, 135, 0.4);
+}
+
+
+
+
+
+
+/* ----yoyaku---- */
+
+.yoyaku {
+  display:block;
+  flex-direction:row-reverse;
+  margin-top:100px;
+  justify-content:center;
+}
+
+.yoyaku-text {
+  position:relative;
+  top:50px;
+  left:50%;
+  transform:translate(-50%,0);
+  text-align:center;
+  letter-spacing:5px;
+  color:#333;
+}
+
+.yoyaku a {
+  position:relative;
+  left:50%;
+  transform:translateX(-50%);
+  display:block;
+  text-decoration:none;
+  color:#333;
+  font-size:18px;
+  margin-top:50px;
+  padding:8px 15px;
+  width:150px;
+  border:1px solid #333;
+  transition:background-color .4s;
+}
+.yoyaku a:hover {
+  background:rgba(135, 255, 135, 0.4);
+}
+
+.yoyaku img {
+  display:block;
+  width:100%;
+  position:relative;
+  right:auto;
+  height:200px;
+  background-size:unset;
+  transform-origin:unset;
+}
+
+@media screen and (min-width:601px) and (max-width:1200px) {
+  .yoyaku img {
+    width:50%;
+    right:40px;
+    height:400px;
+    background-size:cover;
+    transform-origin:center;
+  }
+}
+@media screen and (min-width:601px) and (max-width:1000px) {
+  .yoyaku {
+    display:block;
+  }
+  .yoyaku-text {
+    position:relative;
+    top:50%;
+    transform:translate(0,0);
+    text-align:center;
+    letter-spacing:7px;
+    color:#333;
+    margin:100px;
+  }
+  
+  /* .yoyaku a {
+    position:relative;
+    left:50%;
+    transform:translateX(-50%);
+    display:block;
+    text-decoration:none;
+    color:#333;
+    font-size:18px;
+    margin-top:50px;
+    padding:8px;
+    width:150px;
+    border:1px solid #333;
+  } */
+  
+  .yoyaku img {
+    position:relative;
+    top:50%;
+    left:50%;
+    transform:translateX(-50%);
+    height:450px;
+    width:80%;
+    background-size:cover;
+    transform-origin:center;
+  }
+}
+
+
+
+
+
+.gallery {
+  margin-top:150px;
+}
+
+
+.gallery h1 {
+  color:rgb(101, 255, 101);
+  text-align:center;
+  font-size:40px;
+  letter-spacing:8px;
+  margin-bottom:20px;
+}
+
+.gallery ul {
+  padding:0;
+  display:flex;
+  justify-content:center;
+  text-align:center;
+  flex-wrap:wrap;
+  width:100%;
+}
+.gallery li {
+  display:block;
+  list-style:none;
+  margin:20px;
+}
+
+.gallery .mask {
+  position:relative;
+  width:100%;
+  height:427px;
+  cursor:pointer;
+  transition:0.3s;
+}
+.gallery .mask:hover {
+  opacity:0.6;
+}
+.gallery img {
+  background-size:cover;
+  height:100%;
+  width:100%;
+}
+.gallery p {
+  display:block;
+  margin:0;
+  padding:10px 0;
+  width:100%;
+  position:absolute;
+  bottom:5px;
+  left:0;
+  background:rgba(0, 255, 0, 0.4);
+  letter-spacing:3px;
+  color:#fff;
+}
+
+@media screen and (min-width:1057px) and (max-width:1376px){
+  .gallery .mask {
+    position:relative;
+    /* width:640px; */
+    width:480px;
+    /* height:427px; */
+    height:324px;
+    /* height:214px; */
+  }
+  .gallery li {
+    margin:20px;
+  }
+}
+@media screen and (min-width:601px) and (max-width:1056px){
+  .gallery .mask {
+    position:relative;
+    width:320px;
+    height:214px;
+  }
+  .gallery li {
+    margin:20px;
+  }
+}
+@media screen and (min-width:601px) and (max-width:736px){
+  .gallery .mask {
+    position:relative;
+    width:550px;
+    height:400px;
+  }
+  .gallery li {
+    margin:20px;
+  }
+}
+
+
+
+footer {
+  margin-top:80px;
+  border-top:1px solid #333;
+  width:100%;
+}
+
+.footer-box {
+  display:block;
+  justify-content:center;
+  margin:50px 0 ;
+  flex-direction:row-reverse;
+  width:100%;
+}
+
+
+.footer-menu {
+  position:relative;
+  left:0px;
+  display:flex;
+  justify-content:center;
+  width:100%;
+  margin-top:50px;
+  padding-bottom:50px;
+}
+.footer-menu a {
+  text-decoration:none;
+  color:#333;
+  margin:12px;
+}
+
+.footer-text-area {
+  margin-top:50px;
+  position:relative;
+  text-align:center;
+  width:100%;
+}
+.footer-text-area h1 {
+  font-size:40px;
+  letter-spacing:8px;
+  margin:0;
+  margin-bottom:20px;
+}
+.footer-text-area p {
+  margin-bottom:0px;
+}
+
+
+.zyuusyo {
+  position:relative;
+  margin-left:50px;
+  width:80%;
+  letter-spacing:3px;
+  color:#333;
+}
+.zyuusyo h1,.zyuusyo p,.zyuusyo h2 {
+  margin:0;
+}
+.zyuusyo h1 {
+  font-size:22px;
+  margin-bottom:5px;
+}
+.zyuusyo h2 {
+  font-size:18px;
+  margin-bottom:20px;
+}
+.zyuusyo p {
+  font-size:16px;
+}
+.zyuusyo a {
+  margin-top:10px;
+  text-decoration:none;
+  color:#333;
+  padding:8px;
+  border:1px solid #333;
+  transition:background-color .4s;
+}
+.zyuusyo a:hover {
+  background:rgba(135, 255, 135, 0.4);
+}
+
+
+
+
+
+
+.fade {
+  opacity:0;
+  transition:opacity 2.5s;
+}
+
+.fade-in {
+  opacity:1;
+}
+
